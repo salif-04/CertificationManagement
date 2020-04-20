@@ -14,6 +14,7 @@
             <lightning-tab label="Related">
                 <div class="slds-box">
                     <lightning-card varient="Narrow" title="Certification Requests" icon-name="custom:custom16">
+                        <lightning-button label="New" slot="actions" onclick={registerNewCertReq}></lightning-button>
                         <div class="slds-p-horizontal_small bdr-top">
                             <template for:each={certReqList} for:item="certReq">
                                 <lightning-tile label={certReq.Name} class="bdr-btm" key={certReq.Id} data-id={certReq.Id} onclick={navigateToCertReq}></lightning-tile>

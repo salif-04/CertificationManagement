@@ -1,6 +1,6 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import getApprovalHistory from '@salesforce/apex/CertificationRequest.getApprovalHistory';
-import getUserNames from '@salesforce/apex/CertificationRequest.getUserNames';
+// import getUserNames from '@salesforce/apex/CertificationRequest.getUserNames';
 
 export default class CertificationRequestRecordPage extends LightningElement {
     @api recordId;
@@ -20,5 +20,5 @@ export default class CertificationRequestRecordPage extends LightningElement {
         }
     }
 
-    @wire(getUserNames, {ActorIds: actorIdList}) actorMap;
+    // @wire(getUserNames, {ActorIds: actorIdList}) actorMap;
 }

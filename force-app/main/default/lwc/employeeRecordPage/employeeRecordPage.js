@@ -1,5 +1,6 @@
 import { LightningElement, api, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
+import { encodeDefaultFieldValues } from 'lightning/pageReferenceUtils';
 import getCertificationRequests from '@salesforce/apex/Employee.getCertificationRequests';
 
 export default class EmployeeRecordPage extends NavigationMixin(LightningElement) {
@@ -26,5 +27,20 @@ export default class EmployeeRecordPage extends NavigationMixin(LightningElement
                 actionName: 'view'
             }
         })
+    }
+
+    registerNewCertReq = () => {
+        this[NavigationMixin.Navigate]({
+            type: 'standard__objectPage',
+            attributes: {
+                objectApiName: 'Certification_Request__c',
+                actionName: 'new'
+            },
+            state: {
+                defaultFieldValues: encodeDefaultFieldValues({
+                    Employee__c: this.recordId
+                })
+            }
+        });
     }
 }
