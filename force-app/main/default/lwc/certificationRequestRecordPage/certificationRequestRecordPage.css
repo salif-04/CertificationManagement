@@ -1,0 +1,16 @@
+.bdr-btm {
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.bdr-top {
+    border-top: 1px solid #e6e6e6;
+    padding-top: 2%;
+}
+
+.lightning-tabset-container {
+    padding: 0% 2% 1% 2%;
+}
+
+.slds-box {
+    margin-bottom: 1%;
+}

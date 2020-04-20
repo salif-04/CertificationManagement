@@ -1,0 +1,49 @@
+<template>
+    <lightning-tabset>
+        <div class="lightning-tabset-container">
+            <lightning-tab label="Details">
+                <lightning-record-view-form record-id={recordId} object-api-name="Certification_Request__c">
+                    <lightning-output-field class="bdr-btm" field-name="Name"></lightning-output-field>
+                    <lightning-output-field class="bdr-btm" field-name="Employee__c"></lightning-output-field>
+                    <lightning-output-field class="bdr-btm" field-name="Certification__c"></lightning-output-field>
+                    <lightning-output-field class="bdr-btm" field-name="Voucher__c"></lightning-output-field>
+                    <lightning-output-field class="bdr-btm" field-name="Due_Date__c"></lightning-output-field>
+                    <lightning-output-field class="bdr-btm" field-name="Status__c"></lightning-output-field>
+                    <lightning-output-field class="bdr-btm" field-name="Comments__c"></lightning-output-field>
+                </lightning-record-view-form>
+            </lightning-tab>
+            <lightning-tab label="Related">
+                <div class="slds-box">
+                    <lightning-card varient="Narrow" title="Approval History" icon-name="standard:approval">
+                        <div class="slds-p-horizontal_small bdr-top">
+                            <template for:each={approvalHistList} for:item="approvalHist">
+                                <lightning-tile label={approvalHist.ActorId} class="bdr-btm" key={approvalHist.Id} data-id={approvalHist.ActorId}>
+                                    <dl class="slds-dl_horizontal">
+                                        <dt class="slds-dl_horizontal__label">
+                                            <p class="slds-truncate" title="Created Date">Created Date</p>
+                                        </dt>
+                                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                            <p class="slds-truncate">{approvalHist.CreatedDate}</p>
+                                        </dd>
+                                        <dt class="slds-dl_horizontal__label">
+                                            <p class="slds-truncate" title="Status">Status</p>
+                                        </dt>
+                                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                            <p class="slds-truncate">{approvalHist.StepStatus}</p>
+                                        </dd>
+                                        <dt class="slds-dl_horizontal__label">
+                                            <p class="slds-truncate" title="Comments">Comments</p>
+                                        </dt>
+                                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                            <p class="slds-truncate">{approvalHist.Comments}</p>
+                                        </dd>
+                                    </dl>
+                                </lightning-tile>
+                            </template>
+                        </div>
+                    </lightning-card>
+                </div>
+            </lightning-tab>
+        </div>
+    </lightning-tabset>
+</template>
