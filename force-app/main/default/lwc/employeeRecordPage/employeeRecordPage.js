@@ -1,13 +1,13 @@
 import { LightningElement, api, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
-import getCertificationRequests from '@salesforce/apex/Voucher.getCertificationRequests';
+import getCertificationRequests from '@salesforce/apex/Employee.getCertificationRequests';
 
-export default class VoucherRecordComponent extends NavigationMixin(LightningElement) {
+export default class EmployeeRecordPage extends NavigationMixin(LightningElement) {
     @api recordId;
     certReqList;
-    
+
     @wire(getCertificationRequests, {recordId: '$recordId'})
-    certifiactionFetch({error, data}) {
+    employeeFetch({error, data}) {
         if(data) {
             this.certReqList = data;
         }
@@ -25,7 +25,6 @@ export default class VoucherRecordComponent extends NavigationMixin(LightningEle
                 objectApiName: 'Certification_Request__c',
                 actionName: 'view'
             }
-        });
+        })
     }
-    
 }
