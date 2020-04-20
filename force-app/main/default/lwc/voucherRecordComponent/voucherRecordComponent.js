@@ -16,7 +16,7 @@ export default class VoucherRecordComponent extends NavigationMixin(LightningEle
         }
     }
 
-    navigateToCertReq(event) {
+    navigateToCertReq = (event) => {
         event.preventDefault();
         this[NavigationMixin.Navigate]({
             type: 'standard__recordPage',

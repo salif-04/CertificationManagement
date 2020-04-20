@@ -2,20 +2,26 @@
     <lightning-tabset>
         <div class="lightning-tabset-container">
             <lightning-tab label="Details">
-                <lightning-record-view-form record-id={recordId} object-api-name="Voucher__c">
+                <lightning-record-view-form record-id={recordId} object-api-name="Certification__c">
                     <lightning-output-field class="bdr-btm" field-name="Name"></lightning-output-field>
-                    <lightning-output-field class="bdr-btm" field-name="Certification__c"></lightning-output-field>
-                    <lightning-output-field class="bdr-btm" field-name="Voucher_Cost__c"></lightning-output-field>
-                    <lightning-output-field class="bdr-btm" field-name="Validity__c"></lightning-output-field>
-                    <lightning-output-field class="bdr-btm" field-name="Active__c"></lightning-output-field>
+                    <lightning-output-field class="bdr-btm" field-name="Cert_Name__c"></lightning-output-field>
                     <lightning-output-field class="bdr-btm" field-name="Comments__c"></lightning-output-field>
                 </lightning-record-view-form>
             </lightning-tab>
             <lightning-tab label="Related">
                 <div class="slds-box">
+                    <lightning-card varient="Narrow" title="Vouchers" icon-name="custom:custom13">
+                        <div class="slds-p-horizontal_small bdr-top">
+                            <template for:each={voucherList} for:item="voucher">
+                                <lightning-tile label={voucher.Name} class="bdr-btm" key={voucher.Id} data-id={voucher.Id} onclick={navigateToVoucher}></lightning-tile>
+                            </template>
+                        </div>
+                    </lightning-card>
+                </div>
+                <div class="slds-box">
                     <lightning-card varient="Narrow" title="Certification Requests" icon-name="custom:custom16">
                         <div class="slds-p-horizontal_small bdr-top">
-                            <template for:each={certificationRequestList} for:item="certReq">
+                            <template for:each={certReqList} for:item="certReq">
                                 <lightning-tile label={certReq.Name} class="bdr-btm" key={certReq.Id} data-id={certReq.Id} onclick={navigateToCertReq}></lightning-tile>
                             </template>
                         </div>
