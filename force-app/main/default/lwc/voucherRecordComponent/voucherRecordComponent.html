@@ -1,0 +1,29 @@
+<template>
+    <lightning-tabset>
+        <div class="lightning-tabset-container">
+        <lightning-tab label="Details">
+            <lightning-record-view-form record-id={recordId} object-api-name="Voucher__c">
+                <lightning-output-field field-name="Name"></lightning-output-field>
+                <lightning-output-field field-name="Certification__c"></lightning-output-field>
+                <lightning-output-field field-name="Voucher_Cost__c"></lightning-output-field>
+                <lightning-output-field field-name="Validity__c"></lightning-output-field>
+                <lightning-output-field field-name="Active__c"></lightning-output-field>
+                <lightning-output-field field-name="Comments__c"></lightning-output-field>
+            </lightning-record-view-form>
+        </lightning-tab>
+        <lightning-tab label="Related">
+            <div class="slds-box">
+                <lightning-card varient="Narrow" title="Certification" icon-name="action:description">
+                    <div class="slds-p-horizontal_small bdr-top">
+                        <template for:each={certificationRequestList} for:item="certReq">
+                            <lightning-tile label={certReq.Name} key={certReq.Id} data-id={certReq.Id} onclick={navigateToCertReq}></lightning-tile>
+                        </template>
+                    </div>
+                </lightning-card>
+            </div>
+        </lightning-tab>
+        </div>
+    </lightning-tabset>
+
+
+</template>
