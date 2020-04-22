@@ -1,0 +1,19 @@
+.tile {
+    border: 1px solid #f2cf5b;
+    border-radius: .25rem;
+    background-color: #f9eab8;
+    display: block;
+    cursor: pointer;
+}
+
+.silhouette {
+    height: 50px;
+}
+
+.main {
+    padding: 1%;
+}
+
+.bold {
+    font-weight: bold;
+}

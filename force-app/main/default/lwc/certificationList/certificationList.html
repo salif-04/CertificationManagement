@@ -1,0 +1,32 @@
+<template>
+    <lightning-input class="slds-m-bottom_small" value={searchTerm} onchange={searchTermChange} placeholder="Search Certification ID or Name"></lightning-input>
+    <lightning-card>
+        <div class="main">
+            <template if:true={certifications}>
+                <lightning-layout multiple-rows="true" pull-to-boundary="small">
+                    <template for:each={certifications} for:item="certification">
+                        <lightning-layout-item key={certification.Id} size="4" class="slds-p-around_x-small">
+                            <lightning-card title={certification.Cert_Name__c} class="tile" data-id={certification.Id} onclick={navigateToEmployee}>
+                                <div class="slds-p-horizontal_small">
+                                    <div class="slds-media">
+                                        <div class="slds-media__figure">
+                                            <img src={icon} alt="Certificate" class="silhouette"/>
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <p class="slds-m-bottom_xx-small bold">{certification.Name}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </lightning-card>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </template>
+        <template if:true={noDataFound}>
+            <div class="slds-text-color_error">
+                No Certification Found
+            </div>
+        </template>
+        </div>
+    </lightning-card>
+</template>

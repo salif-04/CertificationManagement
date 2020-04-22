@@ -1,0 +1,32 @@
+<template>
+    <lightning-input class="slds-m-bottom_small" value={searchTerm} onchange={searchTermChange} placeholder="Search Voucher ID"></lightning-input>
+    <lightning-card>
+        <div class="main">
+            <template if:true={vouchers}>
+                <lightning-layout multiple-rows="true" pull-to-boundary="small">
+                    <template for:each={vouchers} for:item="voucher">
+                        <lightning-layout-item key={voucher.Id} size="4" class="slds-p-around_x-small">
+                            <lightning-card title={voucher.Name} class="tile" data-id={voucher.Id} onclick={navigateToEmployee}>
+                                <div class="slds-p-horizontal_small">
+                                    <div class="slds-media">
+                                        <div class="slds-media__figure">
+                                            <img src={icon} alt="Certificate" class="silhouette"/>
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <p class="slds-m-bottom_xx-small bold">{voucher.Validity__c}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </lightning-card>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </template>
+        <template if:true={noDataFound}>
+            <div class="slds-text-color_error">
+                No Voucher Found
+            </div>
+        </template>
+        </div>
+    </lightning-card>
+</template>

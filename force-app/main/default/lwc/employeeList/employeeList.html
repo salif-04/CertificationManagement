@@ -1,0 +1,34 @@
+<template>
+    <lightning-input class="slds-m-bottom_small" value={searchTerm} onchange={searchTermChange} placeholder="Search Employee ID or Name or Email ID"></lightning-input>
+    <lightning-card>
+        <div class="main">
+            <template if:true={employees}>
+                <lightning-layout multiple-rows="true" pull-to-boundary="small">
+                    <template for:each={employees} for:item="employee">
+                        <lightning-layout-item key={employee.Id} size="3" class="slds-p-around_x-small">
+                            <lightning-card title={employee.Emp_Name__c} class="tile" data-id={employee.Id} onclick={navigateToEmployee}>
+                                <div class="slds-p-horizontal_small">
+                                    <div class="slds-media">
+                                        <div class="slds-media__figure">
+                                            <img src={icon} alt="Profile" class="silhouette"/>
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <p class="slds-m-bottom_xx-small bold">{employee.Name}</p>
+                                            <p class="slds-m-bottom_xx-small"><small>{employee.Email_ID__c}</small></p>
+                                            <p class="slds-m-bottom_xx-small"><small>Skilled in {employee.Primary_Skill__c}</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </lightning-card>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </template>
+        <template if:true={noDataFound}>
+            <div class="slds-text-color_error">
+                No Employee Found
+            </div>
+        </template>
+        </div>
+    </lightning-card>
+</template>
