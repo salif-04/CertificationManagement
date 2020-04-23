@@ -72,8 +72,7 @@ export default class CertificationManagementCharts extends LightningElement {
             },
             options: {
                 legend: {
-                    position: 'bottom',
-                    padding: 10
+                    display: false
                 },
                 title: {
                     display: true,
