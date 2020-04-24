@@ -1,5 +1,6 @@
 import { LightningElement, api, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent'
 import getVouchers from '@salesforce/apex/Certification.getVouchers';
 import getCertificationRequests from '@salesforce/apex/Certification.getCertificationRequests';
 
@@ -14,7 +15,12 @@ export default class CertificationRecordPage extends NavigationMixin(LightningEl
             this.voucherList = data;
         }
         if(error) {
-            alert(error);
+            const evt = new ShowToastEvent({
+                title: 'Error in Fetching Data',
+                message: error.message,
+                variant: 'error'
+            });
+            this.dispatchEvent(evt);
         }
     }
 
@@ -24,7 +30,12 @@ export default class CertificationRecordPage extends NavigationMixin(LightningEl
             this.certReqList = data;
         }
         if(error) {
-            alert(error);
+            const evt = new ShowToastEvent({
+                title: 'Error in Fetching Data',
+                message: error.message,
+                variant: 'error'
+            });
+            this.dispatchEvent(evt);
         }
     }
 

@@ -1,5 +1,6 @@
 import { LightningElement, api, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getCertificationRequests from '@salesforce/apex/Voucher.getCertificationRequests';
 
 export default class VoucherRecordComponent extends NavigationMixin(LightningElement) {
@@ -12,7 +13,12 @@ export default class VoucherRecordComponent extends NavigationMixin(LightningEle
             this.certReqList = data;
         }
         if(error) {
-            alert(error);
+            const evt = new ShowToastEvent({
+                title: 'Error in Fetching Data',
+                message: error.message,
+                variant: 'error'
+            });
+            this.dispatchEvent(evt);
         }
     }
 

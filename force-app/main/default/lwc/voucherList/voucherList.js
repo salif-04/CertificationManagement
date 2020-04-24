@@ -1,5 +1,6 @@
 import { LightningElement, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
+import { ShowToastEvent } from'lightning/platformShowToastEvent';
 import searchVouchers from '@salesforce/apex/Search.searchVouchers';
 
 export default class VoucherList extends NavigationMixin(LightningElement) {
@@ -13,7 +14,12 @@ export default class VoucherList extends NavigationMixin(LightningElement) {
             this.vouchers = data;
         }
         if(error) {
-            console.log('Error fetching data');
+            const evt = new ShowToastEvent({
+                title: 'Error in Fetching Data',
+                message: error.message,
+                variant: 'error'
+            });
+            this.dispatchEvent(evt);
         }
     }
 

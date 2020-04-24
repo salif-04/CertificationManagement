@@ -1,4 +1,5 @@
 import { LightningElement, api, wire, track } from 'lwc';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getApprovalHistory from '@salesforce/apex/CertificationRequest.getApprovalHistory';
 // import getUserNames from '@salesforce/apex/CertificationRequest.getUserNames';
 
@@ -16,7 +17,12 @@ export default class CertificationRequestRecordPage extends LightningElement {
             });
         }
         if(error) {
-            alert(error);
+            const evt = new ShowToastEvent({
+                title: 'Error in Fetching Data',
+                message: error.message,
+                variant: 'error'
+            });
+            this.dispatchEvent(evt);
         }
     }
 

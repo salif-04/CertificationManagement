@@ -1,6 +1,6 @@
 import { LightningElement, wire } from 'lwc';
-import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import { loadScript } from 'lightning/platformResourceLoader';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import ChartJS from '@salesforce/resourceUrl/ChartJS';
 import getChartCertificationRequest from '@salesforce/apex/CertificationManagementCharts.getChartCertificationRequest'
 
@@ -16,13 +16,12 @@ export default class CertificationManagementCharts extends LightningElement {
             this.initializeChart(chartKeys, chartValues);
         }
         if (error) {
-            this.dispatchEvent(
-                new ShowToastEvent({
-                    title: 'Error Loading Data',
-                    message: error.message,
-                    variant: 'error'
-                })
-            )
+            const evt = new ShowToastEvent({
+                title: 'Error in Fetching Data',
+                message: error.message,
+                variant: 'error'
+            });
+            this.dispatchEvent(evt);
         }
     }
 

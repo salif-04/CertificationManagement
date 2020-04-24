@@ -1,5 +1,6 @@
 import { LightningElement, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import searchCertifications from '@salesforce/apex/Search.searchCertifications';
 
 export default class CertificationList extends NavigationMixin(LightningElement) {
@@ -13,7 +14,12 @@ export default class CertificationList extends NavigationMixin(LightningElement)
             this.certifications = data;
         }
         if(error) {
-            console.log('Error fetching data');
+            const evt = new ShowToastEvent({
+                title: 'Error in Fetching Data',
+                message: error.message,
+                variant: 'error'
+            });
+            this.dispatchEvent(evt);
         }
     }
 
