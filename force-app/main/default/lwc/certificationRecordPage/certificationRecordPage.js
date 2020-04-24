@@ -1,6 +1,5 @@
 import { LightningElement, api, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
-import { encodeDefaultFieldValues } from 'lightning/pageReferenceUtils';
 import getVouchers from '@salesforce/apex/Certification.getVouchers';
 import getCertificationRequests from '@salesforce/apex/Certification.getCertificationRequests';
 
@@ -49,36 +48,6 @@ export default class CertificationRecordPage extends NavigationMixin(LightningEl
                 recordId: event.target.dataset.id,
                 objectApiName: 'Certification_Request__c',
                 actionName: 'view'
-            }
-        });
-    }
-
-    registerNewVoucher = () => {
-        this[NavigationMixin.Navigate]({
-            type: 'standard__objectPage',
-            attributes: {
-                objectApiName: 'Voucher__c',
-                actionName: 'new'
-            },
-            state: {
-                defaultFieldValues: encodeDefaultFieldValues({
-                    Certification__c: this.recordId
-                })
-            }
-        });
-    }
-
-    registerNewCertReq = () => {
-        this[NavigationMixin.Navigate]({
-            type: 'standard__objectPage',
-            attributes: {
-                objectApiName: 'Certification_Request__c',
-                actionName: 'new'
-            },
-            state: {
-                defaultFieldValues: encodeDefaultFieldValues({
-                    Certification__c: this.recordId
-                })
             }
         });
     }

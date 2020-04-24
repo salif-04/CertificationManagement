@@ -1,22 +1,26 @@
 <template>
-    <lightning-card class="slds-m-left_x-large slds-m-right_x-large">
-        <div class="slds-p-left_x-large slds-p-right_x-large">
-            <h1 class="slds-m-bottom_medium">
-                <lightning-icon icon-name="custom:custom15"></lightning-icon> &nbsp;
-                Employee
-            </h1>
-            <lightning-record-edit-form record-id={recordId} object-api-name="Employee__c" onsuccess={onSubmit}>
+    <div class="slds-modal__container">
+        <lightning-record-edit-form record-id={recordId} object-api-name="Employee__c" onsuccess={onSubmit}>
+            <header class="slds-modal__header">
+                <h1 class="slds-modal__title slds-hyphenate">
+                    <lightning-icon icon-name="custom:custom15"></lightning-icon> &nbsp;
+                    Employee
+                </h1>
                 <lightning-messages></lightning-messages>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium">
                 <lightning-input-field field-name="Emp_Name__c"></lightning-input-field>
                 <lightning-input-field field-name="Email_ID__c"></lightning-input-field>
                 <lightning-input-field field-name="Primary_Skill__c"></lightning-input-field>
                 <lightning-input-field field-name="Secondary_Skill__c"></lightning-input-field>
                 <lightning-input-field field-name="Comments__c"></lightning-input-field>
+            </div>
+            <footer class="slds-modal__footer">
                 <lightning-button-group class="slds-m-top_medium">
-                    <lightning-button class="slds-m-right_small" type="submit" label="Create Employe" variant="brand" icon-name="custom:custom15"></lightning-button>
+                    <lightning-button class="slds-m-right_small" type="submit" label="Save" variant="brand" icon-name="custom:custom15"></lightning-button>
                     <lightning-button class="slds-m-left_small" label="Cancel" variant="destructive" icon-name="action:close" onclick={cancelCraete}></lightning-button>
                 </lightning-button-group>
-            </lightning-record-edit-form>
-        </div>
-    </lightning-card>
+            </footer>
+        </lightning-record-edit-form>
+    </div>
 </template>

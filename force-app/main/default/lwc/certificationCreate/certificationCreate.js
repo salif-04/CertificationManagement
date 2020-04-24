@@ -5,7 +5,7 @@ export default class CertificationCreate extends NavigationMixin(LightningElemen
     @api recordId;
 
     onSubmit = (event) => {
-        event.preventDeafult();
+        event.preventDefault();
         this[NavigationMixin.Navigate]({
             type: 'standard__recordPage',
             attributes: {
