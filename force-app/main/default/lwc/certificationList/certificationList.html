@@ -1,7 +1,8 @@
 <template>
-    <lightning-input class="slds-m-bottom_small" value={searchTerm} onchange={searchTermChange} placeholder="Search Certification ID or Name"></lightning-input>
-    <lightning-card>
+    <lightning-card title="Certifications" icon-name="standard:article">
+        <lightning-button label="New" if:true={userPerms.IsCreatable} onclick={navigateToNew} slot="actions"></lightning-button>
         <div class="main">
+            <lightning-input class="slds-m-bottom_small" value={searchTerm} onchange={searchTermChange} placeholder="Search Certification ID or Name"></lightning-input>
             <template if:true={certifications}>
                 <lightning-layout multiple-rows="true" pull-to-boundary="small">
                     <template for:each={certifications} for:item="certification">
@@ -22,11 +23,11 @@
                     </template>
                 </lightning-layout>
             </template>
-        <template if:true={noDataFound}>
-            <div class="slds-text-color_error">
-                No Certification Found
-            </div>
-        </template>
+            <template if:true={noDataFound}>
+                <div class="slds-text-color_error">
+                    No Certification Found
+                </div>
+            </template>
         </div>
     </lightning-card>
 </template>

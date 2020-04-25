@@ -4,14 +4,16 @@
     background-color: #fcd2cf;
     display: block;
     cursor: pointer;
+    overflow:hidden;
 }
 
 .silhouette {
-    height: 70px;
+    height: 50px;
 }
 
 .main {
     padding: 1%;
+    padding-top: 0%;
 }
 
 .bold {

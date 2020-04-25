@@ -25,12 +25,6 @@ export default class CertificationCreate extends NavigationMixin(LightningElemen
     }
 
     cancelCraete = () => {
-        this[NavigationMixin.Navigate]({
-            type: 'standard__objectPage',
-            attributes: {
-                objectApiName: 'Certification__c',
-                actionName: 'home'
-            }
-        });
+        window.history.back();
     }
 }

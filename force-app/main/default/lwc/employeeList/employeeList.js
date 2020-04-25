@@ -1,9 +1,12 @@
-import { LightningElement, wire } from 'lwc';
+import { LightningElement, wire, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import searchEmployee from '@salesforce/apex/Search.searchEmployee';
+import getUserEntityAccess from '@salesforce/apex/UserAccess.getUserEntityAccess';
 
 export default class EmployeeList extends NavigationMixin(LightningElement) {
+    @track userPerms = {IsCreatable: false};
+
     searchTerm = '';
     employees = [];
     icon = 'https://cdn3.iconfinder.com/data/icons/iconano-web-stuff/512/105-User-512.png';
@@ -17,6 +20,21 @@ export default class EmployeeList extends NavigationMixin(LightningElement) {
             const evt = new ShowToastEvent({
                 title: 'Error in Fetching Data',
                 message: error.message,
+                variant: 'error'
+            });
+            this.dispatchEvent(evt);
+        }
+    }
+
+    @wire(getUserEntityAccess, {objectApiName: 'Employee__c'})
+    getPerms({error, data}) {
+        if(data) {
+            this.userPerms = data;
+        }
+        if (error) {
+            const evt = new ShowToastEvent({
+                title: 'Error Occured',
+                message: 'Error Occured while fetching data',
                 variant: 'error'
             });
             this.dispatchEvent(evt);
@@ -45,5 +63,15 @@ export default class EmployeeList extends NavigationMixin(LightningElement) {
                 }
             });
         }
+    }
+
+    navigateToNew = () => {
+        this[NavigationMixin.Navigate]({
+            type: 'standard__objectPage',
+            attributes: {
+                objectApiName: 'Employee__c',
+                actionName: 'new'
+            }
+        });
     }
 }

@@ -13,7 +13,7 @@ export default class CertificationRequestRecordPage extends LightningElement {
         if(data) {
             this.approvalHistList = data;
             data.forEach((element) => {
-                actorIdList.push(element.ActorId);
+                this.actorIdList.push(element.ActorId);
             });
         }
         if(error) {

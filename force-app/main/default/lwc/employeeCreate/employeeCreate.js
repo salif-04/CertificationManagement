@@ -25,12 +25,6 @@ export default class EmployeeCreate extends NavigationMixin(LightningElement) {
     }
 
     cancelCraete = () => {
-        this[NavigationMixin.Navigate]({
-            type: 'standard__objectPage',
-            attributes: {
-                objectApiName: 'Employee__c',
-                actionName: 'home'
-            }
-        });
+        window.history.back();
     }
 }

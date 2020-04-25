@@ -1,11 +1,12 @@
 <template>
-    <lightning-input class="slds-m-bottom_small" value={searchTerm} onchange={searchTermChange} placeholder="Search Employee ID or Name or Email ID"></lightning-input>
-    <lightning-card>
+    <lightning-card title="Employees" icon-name="custom:custom15">
+        <lightning-button label="New" if:true={userPerms.IsCreatable} onclick={navigateToNew} slot="actions"></lightning-button>
         <div class="main">
+            <lightning-input class="slds-m-bottom_small" value={searchTerm} onchange={searchTermChange} placeholder="Search Employee ID or Name or Email ID"></lightning-input>
             <template if:true={employees}>
                 <lightning-layout multiple-rows="true" pull-to-boundary="small">
                     <template for:each={employees} for:item="employee">
-                        <lightning-layout-item key={employee.Id} size="3" class="slds-p-around_x-small">
+                        <lightning-layout-item key={employee.Id} size="4" class="slds-p-around_x-small">
                             <lightning-card title={employee.Emp_Name__c} class="tile" data-id={employee.Id} onclick={navigateToEmployee}>
                                 <div class="slds-p-horizontal_small">
                                     <div class="slds-media">

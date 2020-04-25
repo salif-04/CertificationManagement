@@ -25,12 +25,6 @@ export default class VoucherCreate extends NavigationMixin(LightningElement) {
     }
 
     cancelCraete = () => {
-        this[NavigationMixin.Navigate]({
-            type: 'standard__objectPage',
-            attributes: {
-                objectApiName: 'Voucher__c',
-                actionName: 'home'
-            }
-        });
+        window.history.back();
     }
 }

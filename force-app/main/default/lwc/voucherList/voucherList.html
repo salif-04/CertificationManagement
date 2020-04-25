@@ -1,7 +1,8 @@
 <template>
-    <lightning-input class="slds-m-bottom_small" value={searchTerm} onchange={searchTermChange} placeholder="Search Voucher ID"></lightning-input>
-    <lightning-card>
+    <lightning-card title="Active Vouchers" icon-name="custom:custom13">
+        <lightning-button label="New" if:true={userPerms.IsCreatable} onclick={navigateToNew} slot="actions"></lightning-button>
         <div class="main">
+            <lightning-input class="slds-m-bottom_small" value={searchTerm} onchange={searchTermChange} placeholder="Search Voucher ID"></lightning-input>
             <template if:true={vouchers}>
                 <lightning-layout multiple-rows="true" pull-to-boundary="small">
                     <template for:each={vouchers} for:item="voucher">
